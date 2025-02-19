@@ -40,7 +40,7 @@ a {
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 /*CSS dos botões*/
@@ -71,6 +71,7 @@ a:hover {
 
 .btn-editar:hover, .btn-excluir:hover, .btn-ativar:hover, .btn-desativar:hover {
     opacity: 0.8;
+    text-decoration: none;
 }
 /* Conteúdo Principal */
 .content {

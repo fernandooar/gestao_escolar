@@ -34,20 +34,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="container-main">
         <div class="propaganda-container">
             <div class="card">
-                <div class="card title">
+                <div class="card-title">
                     <h3>Nova Escola.</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores tempore reiciendis nobis
-                        repellendus corporis dolorum recusandae esse. Amet tempore cupiditate, quaerat dolores iste at
-                        itaque. Amet, quia sed a animi facilis deleniti eligendi dolores rerum molestias, in incidunt
-                        consequatur explicabo similique minima. Dignissimos ullam nobis commodi nemo molestias! Autem
-                        incidunt nam voluptates. Vero modi necessitatibus expedita ipsa libero eius provident maiores
-                        voluptate laborum, voluptas maxime enim commodi! Ut quis sit assumenda? Molestias magni
-                        cupiditate nulla voluptate, quia, distinctio harum aliquid quod enim vel quas. Dicta autem
-                        aperiam, minus enim, magnam modi eligendi adipisci dolore nisi tempora ullam, iusto iure dolor
-                        commodi molestiae veniam labore? Delectus dolor iure consequuntur nulla nostrum, atque excepturi
-                        fugiat nihil vitae eius possimus labore ipsa quam eum explicabo, modi veritatis consequatur
-                        laboriosam quos ullam distinctio. Eos vero sit animi ea, error veniam esse harum repellat, quasi
-                        aliquid, voluptas facilis consequuntur qui sint eum beatae voluptatem sequi.</p>
+                    <div class="img-login">
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et quas ad earum commodi error enim
+                            aut incidunt voluptatem molestiae soluta debitis voluptates, architecto sed neque harum! Ea,
+                            cupiditate reiciendis. Expedita cumque omnis explicabo fugit? Mollitia illo officia expedita
+                            dignissimos quisquam consectetur. Velit explicabo quam atque, voluptatem quis suscipit.
+                            Consequatur eum ducimus ad blanditiis nemo sunt molestiae voluptas voluptatibus architecto
+                            illum dicta repudiandae dolor perspiciatis minus, ab maiores nobis alias dolorem facilis
+                            culpa quo numquam cumque adipisci. Incidunt ratione vitae vel enim? Hic iusto laudantium
+                            velit, voluptate quis ratione rerum vel similique commodi quam architecto assumenda.
+                            Dolorem, voluptas! Maiores, ab libero.</p>
+                    </div>
                 </div>
             </div>
         </div>

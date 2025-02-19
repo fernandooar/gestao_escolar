@@ -53,11 +53,11 @@ $usuarios = buscarTodosUsuarios(); // Busca todos os usuários ordenados por tip
                 </div>
                 <div class="menu">
                     <ul>
-                        <li><a href="/gestao_escolar/views/cadastrar_usuario.php" class="btn-backup">Novo
+                        <li><a href="/gestao_escolar/views/cadastrar_usuario.php">Novo
                                 Usuário</a></li>
-                        <li><a href="/gestao_escolar/views/editar_usuario.php" class="btn-backup">Editar Usuário</a>
+                        <li><a href="/gestao_escolar/views/editar_usuario.php">Editar Usuário</a>
                         </li>
-                        <li><a href="/gestao_escolar/views/excluir_usuario.php" class="btn-backup">Excluir Usuário</a>
+                        <li><a href="/gestao_escolar/views/excluir_usuario.php">Excluir Usuário</a>
                         </li>
                     </ul>
                 </div>
