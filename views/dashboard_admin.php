@@ -20,62 +20,54 @@ $tipo_usuario = $tipos_usuario[$usuario['tipo_usuario_id']] ?? 'Desconhecido';
 //var_dump($usuario);
 $usuarios = buscarTodosUsuarios(); // Busca todos os usuários ordenados por tipo
 ?>
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/gestao_escolar/css/dashadmin.css">
-    <link rel="stylesheet" href="/gestao_escolar/css/navbar.css">
     <title>Dashboard Admin</title>
+    <link rel="stylesheet" href="/gestao_escolar/css/navbar.css">
+    <link rel="stylesheet" href="/gestao_escolar/css/dashadmin.css">
 </head>
 
 <body>
-
-    <header class="header">
-        <h1>Testando</h1>
-        <!-- Navbar -->
-        <nav class="navbar">
-            <div class="navbar-left">
-                <div class="user-info">
-                    <h3><?php echo $usuario['nome']; ?></h3>
-                    <p><?php echo $usuario['email']; ?></p>
-                    <p><?php echo $tipo_usuario; ?></p>
-                </div>
-                <div class="logout-section">
-                    <a href="/gestao_escolar/actions/logout.php" class="btn-logout">Sair</a>
-                </div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <div class="user-info">
+                <h3><?php echo $_SESSION['usuario']['nome']; ?></h3>
+                <p><?php echo $_SESSION['usuario']['email']; ?></p>
+                <p><?php echo $tipo_usuario ?></p>
             </div>
-            <div class="navbar-right">
-                <div class="current-time">
-                    <p id="current-time"></p>
-                </div>
-                <div class="menu">
-                    <ul>
-                        <li><a href="/gestao_escolar/views/cadastrar_usuario.php">Novo
-                                Usuário</a></li>
-                        <li><a href="/gestao_escolar/views/editar_usuario.php">Editar Usuário</a>
-                        </li>
-                        <li><a href="/gestao_escolar/views/excluir_usuario.php">Excluir Usuário</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="backup-section">
-                    <a href="/gestao_escolar/actions/backup.php" class="btn-backup">Backup</a>
-                </div>
-                <!-- <div class="logout-section">
-                    <a href="/gestao_escolar/actions/logout.php" class="btn-logout">Sair</a>
-                </div> -->
+        </div>
+        <div class="navbar-right">
+            <div class="current-time">
+                <p id="current-time"></p>
             </div>
-        </nav>
-    </header>
-
+            <div class="menu">
+                <ul>
+                    <li><a href="/gestao_escolar/views/cadastrar_usuario.php">Cadastrar Novo Usuário</a></li>
+                    <li><a href="/gestao_escolar/views/dashboard_admin.php">Listar Usuários</a></li>
+                </ul>
+            </div>
+            <div class="backup-section">
+                <a href="/gestao_escolar/actions/backup.php" class="btn-backup">Backup do Banco de Dados</a>
+            </div>
+            <div class="logout-section">
+                <a href="/gestao_escolar/actions/logout.php" class="btn-logout">Sair</a>
+            </div>
+        </div>
+    </nav>
 
     <!-- Conteúdo Principal -->
     <main class="content">
+        <h1>Bem-vindo, <?php echo $_SESSION['usuario']['nome']; ?> (Admin)</h1>
+        <p>Este é o painel do administrador.</p>
+
         <h2>Lista de Usuários</h2>
-        <table>
+        <table border="1">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -97,7 +89,7 @@ $usuarios = buscarTodosUsuarios(); // Busca todos os usuários ordenados por tip
                     <td><?php echo $user['tipo']; ?></td>
                     <td><?php echo $user['ativo'] ? 'Ativo' : 'Inativo'; ?></td>
                     <td>
-                        <a href="/gestao_escolar/actions/editar_usuario.php?id=<?php echo $user['usuario_id']; ?>"
+                        <a href="/gestao_escolar/views/editar_usuario.php?id=<?php echo $user['usuario_id']; ?>"
                             class="btn-editar">Editar</a>
                         <a href="/gestao_escolar/actions/excluir_usuario.php?id=<?php echo $user['usuario_id']; ?>"
                             class="btn-excluir">Excluir</a>

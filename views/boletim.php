@@ -8,20 +8,25 @@ if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo_usuario_id'] != 2
 }
 
 require_once __DIR__ . '/../includes/professor.php'; // Inclui as funções do professor
-require_once __DIR__ . '/../includes/auth.php'; // Inclui as funções de autenticação
 
-$usuario = $_SESSION['usuario']; // Obtém os dados do usuário da sessão
-$tipos_usuario = [
-    1 => 'Administrador',
-    2 => 'Professor',
-    3 => 'Aluno'
-];
+$matricula_id = $_GET['matricula_id'] ?? null;
 
-$tipo_usuario = $tipos_usuario[$usuario['tipo_usuario_id']] ?? 'Desconhecido';
+if (!$matricula_id) {
+    header('Location: /gestao_escolar/views/dashboard_professor.php');
+    exit();
+}
 
-// Busca os alunos da turma do professor (exemplo: turma_id = 1)
-$turma_id = 1; // Substitua pelo ID da turma do professor
-$alunos = buscarAlunosPorTurma($turma_id);
+// Processamento do formulário
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $bimestre = $_POST['bimestre'];
+    $nota = $_POST['nota'];
+
+    if (lancarNota($matricula_id, $bimestre, $nota)) {
+        $sucesso = "Nota lançada com sucesso!";
+    } else {
+        $erro = "Erro ao lançar nota.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +34,7 @@ $alunos = buscarAlunosPorTurma($turma_id);
 
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard Professor</title>
+    <title>Lançar Notas</title>
     <link rel="stylesheet" href="/gestao_escolar/css/navbar.css">
     <link rel="stylesheet" href="/gestao_escolar/css/dashboard_admin.css">
 </head>
@@ -41,7 +46,7 @@ $alunos = buscarAlunosPorTurma($turma_id);
             <div class="user-info">
                 <h3><?php echo $_SESSION['usuario']['nome']; ?></h3>
                 <p><?php echo $_SESSION['usuario']['email']; ?></p>
-                <p><?php echo $tipo_usuario; ?></p>
+                <p><?php echo $_SESSION['usuario']['tipo']; ?></p>
             </div>
         </div>
         <div class="navbar-right">
@@ -61,35 +66,27 @@ $alunos = buscarAlunosPorTurma($turma_id);
 
     <!-- Conteúdo Principal -->
     <main class="content">
-        <h1>Meus Alunos</h1>
+        <h1>Lançar Notas</h1>
 
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Matrícula</th>
-                    <th>Login</th>
-                    <th>Email</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($alunos as $aluno): ?>
-                <tr>
-                    <td><?php echo $aluno['nome']; ?></td>
-                    <td><?php echo $aluno['matricula']; ?></td>
-                    <td><?php echo $aluno['login']; ?></td>
-                    <td><?php echo $aluno['email']; ?></td>
-                    <td>
-                        <a href="/gestao_escolar/views/lancar_notas.php?matricula_id=<?php echo $aluno['usuario_id']; ?>"
-                            class="btn-editar">Lançar Notas</a>
-                        <a href="/gestao_escolar/views/boletim.php?matricula_id=<?php echo $aluno['usuario_id']; ?>"
-                            class="btn-ver">Ver Boletim</a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+        <?php if (isset($sucesso)): ?>
+        <p style="color: green;"><?php echo $sucesso; ?></p>
+        <?php endif; ?>
+
+        <?php if (isset($erro)): ?>
+        <p style="color: red;"><?php echo $erro; ?></p>
+        <?php endif; ?>
+
+        <form method="POST" action="">
+            <label for="bimestre">Bimestre:</label>
+            <input type="number" name="bimestre" id="bimestre" min="1" max="4" required>
+            <br>
+
+            <label for="nota">Nota:</label>
+            <input type="number" name="nota" id="nota" step="0.1" min="0" max="10" required>
+            <br>
+
+            <button type="submit">Lançar Nota</button>
+        </form>
     </main>
 
     <!-- Script para atualizar a data e hora em tempo real -->
