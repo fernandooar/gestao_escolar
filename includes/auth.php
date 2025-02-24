@@ -34,12 +34,10 @@ function buscarTodosUsuarios() {
     global $pdo; // Usa a conexão PDO definida no db.php
 
     // Consulta SQL para buscar todos os usuários ordenados por tipo_usuario_id
-    $sql = "
-        SELECT u.usuario_id, u.nome, u.email, u.login, t.tipo, u.ativo 
-        FROM usuarios u
-        JOIN tipos_usuario t ON u.tipo_usuario_id = t.tipo_usuario_id
-        ORDER BY u.tipo_usuario_id ASC, u.nome ASC
-    ";
+    $sql = "SELECT u.usuario_id, u.nome, u.email, u.login, t.tipo, u.ativo 
+            FROM usuarios u
+            JOIN tipos_usuario t ON u.tipo_usuario_id = t.tipo_usuario_id
+            ORDER BY u.tipo_usuario_id ASC, u.nome ASC";
 
     $stmt = $pdo->query($sql); // Executa a consulta
     return $stmt->fetchAll(PDO::FETCH_ASSOC); // Retorna os resultados como um array associativo

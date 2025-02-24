@@ -48,12 +48,12 @@ $usuarios = buscarTodosUsuarios(); // Busca todos os usuários ordenados por tip
             </div>
             <div class="menu">
                 <ul>
-                    <li><a href="/gestao_escolar/views/cadastrar_usuario.php">Cadastrar Novo Usuário</a></li>
-                    <li><a href="/gestao_escolar/views/dashboard_admin.php">Listar Usuários</a></li>
+                    <li><a href="/gestao_escolar/views/cadastrar_usuario.php">Cadastrar</a></li>
+                    <li><a href="/gestao_escolar/views/dashboard_admin.php">Listar</a></li>
                 </ul>
             </div>
             <div class="backup-section">
-                <a href="/gestao_escolar/actions/backup.php" class="btn-backup">Backup do Banco de Dados</a>
+                <a href="/gestao_escolar/actions/backup.php" class="btn-backup">Backup BD</a>
             </div>
             <div class="logout-section">
                 <a href="/gestao_escolar/actions/logout.php" class="btn-logout">Sair</a>
