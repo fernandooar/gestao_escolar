@@ -71,6 +71,18 @@ CREATE INDEX idx_notas_matricula_id ON notas(matricula_id);
 
 ALTER TABLE usuarios ADD COLUMN ativo TINYINT(1) DEFAULT 1;
 
+
+-- Criar uma tabela para armazenar o relacionamento entre professores e turmas.
+-- *usuario_id: ID do professor (deve ser um usuário do tipo professor).
+-- *turma_id: ID da turma à qual o professor está vinculado.
+CREATE TABLE professor_turma (
+    professor_turma_id INT PRIMARY KEY AUTO_INCREMENT,
+    usuario_id INT NOT NULL, -- ID do professor
+    turma_id INT NOT NULL,   -- ID da turma
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(usuario_id),
+    FOREIGN KEY (turma_id) REFERENCES turma(turma_id)
+);
+
 /*
 Explicação do Script:
 

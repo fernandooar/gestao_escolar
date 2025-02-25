@@ -18,10 +18,6 @@ $tipos_usuario = [
 ];
 
 $tipo_usuario = $tipos_usuario[$usuario['tipo_usuario_id']] ?? 'Desconhecido';
-
-// Busca os alunos da turma do professor (exemplo: turma_id = 1)
-$turma_id = 1; // Substitua pelo ID da turma do professor
-$alunos = buscarAlunosPorTurma($turma_id);
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +27,7 @@ $alunos = buscarAlunosPorTurma($turma_id);
     <meta charset="UTF-8">
     <title>Dashboard Professor</title>
     <link rel="stylesheet" href="/gestao_escolar/css/navbar.css">
-    <link rel="stylesheet" href="/gestao_escolar/css/dashboard_admin.css">
+    <link rel="stylesheet" href="/gestao_escolar/css/dashadmin.css">
 </head>
 
 <body>
@@ -50,7 +46,12 @@ $alunos = buscarAlunosPorTurma($turma_id);
             </div>
             <div class="menu">
                 <ul>
-                    <li><a href="/gestao_escolar/views/dashboard_professor.php">Meus Alunos</a></li>
+                    <li><a href="/gestao_escolar/views/listar_alunos.php">Listar Todos os Alunos</a></li>
+                    <li><a href="/gestao_escolar/views/listar_alunos_turma.php">Listar Alunos por Turma</a></li>
+                    <li><a href="/gestao_escolar/views/listar_turmas.php">Listar Turmas</a></li>
+                    <li><a href="/gestao_escolar/views/lancar_notas.php">Lançar Notas</a></li>
+                    <li><a href="/gestao_escolar/views/editar_notas.php">Editar Notas</a></li>
+                    <li><a href="/gestao_escolar/views/gerar_boletim.php">Gerar Boletim</a></li>
                 </ul>
             </div>
             <div class="logout-section">
@@ -61,35 +62,8 @@ $alunos = buscarAlunosPorTurma($turma_id);
 
     <!-- Conteúdo Principal -->
     <main class="content">
-        <h1>Meus Alunos</h1>
-
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Matrícula</th>
-                    <th>Login</th>
-                    <th>Email</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($alunos as $aluno): ?>
-                <tr>
-                    <td><?php echo $aluno['nome']; ?></td>
-                    <td><?php echo $aluno['matricula']; ?></td>
-                    <td><?php echo $aluno['login']; ?></td>
-                    <td><?php echo $aluno['email']; ?></td>
-                    <td>
-                        <a href="/gestao_escolar/views/lancar_notas.php?matricula_id=<?php echo $aluno['usuario_id']; ?>"
-                            class="btn-editar">Lançar Notas</a>
-                        <a href="/gestao_escolar/views/boletim.php?matricula_id=<?php echo $aluno['usuario_id']; ?>"
-                            class="btn-ver">Ver Boletim</a>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+        <h1>Bem-vindo, <?php echo $_SESSION['usuario']['nome']; ?> (Professor)</h1>
+        <p>Este é o painel do professor. Use o menu acima para acessar as funcionalidades.</p>
     </main>
 
     <!-- Script para atualizar a data e hora em tempo real -->

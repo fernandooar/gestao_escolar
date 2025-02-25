@@ -1,32 +1,21 @@
 <?php
 session_start();
 
-// Verifica se o usuário está autenticado e é um professor
-if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo_usuario_id'] != 2) {
-    header('Location: /gestao_escolar/public/login.php');
-    exit();
-}
-
 require_once __DIR__ . '/../includes/professor.php'; // Inclui as funções do professor
+require_once __DIR__ . '/../includes/auth.php'; // Inclui as funções de autenticação
 
-$matricula_id = $_GET['matricula_id'] ?? null;
+$usuario = $_SESSION['usuario']; // Obtém os dados do usuário da sessão
+$tipos_usuario = [
+    1 => 'Administrador',
+    2 => 'Professor',
+    3 => 'Aluno'
+];
 
-if (!$matricula_id) {
-    header('Location: /gestao_escolar/views/dashboard_professor.php');
-    exit();
-}
+$tipo_usuario = $tipos_usuario[$usuario['tipo_usuario_id']] ?? 'Desconhecido';
 
-// Processamento do formulário
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $bimestre = $_POST['bimestre'];
-    $nota = $_POST['nota'];
-
-    if (lancarNota($matricula_id, $bimestre, $nota)) {
-        $sucesso = "Nota lançada com sucesso!";
-    } else {
-        $erro = "Erro ao lançar nota.";
-    }
-}
+// Busca todos os alunos
+$alunos = buscarTodosAlunos();
+var_dump($alunos)
 ?>
 
 <!DOCTYPE html>
@@ -34,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <meta charset="UTF-8">
-    <title>Lançar Notas</title>
+    <title>Listar Todos os Alunos</title>
     <link rel="stylesheet" href="/gestao_escolar/css/navbar.css">
-    <link rel="stylesheet" href="/gestao_escolar/css/dashboard_admin.css">
+    <link rel="stylesheet" href="/gestao_escolar/css/dashadmin.css">
 </head>
 
 <body>
@@ -46,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="user-info">
                 <h3><?php echo $_SESSION['usuario']['nome']; ?></h3>
                 <p><?php echo $_SESSION['usuario']['email']; ?></p>
-                <p><?php echo $_SESSION['usuario']['tipo']; ?></p>
+                <p><?php echo $tipo_usuario ?></p>
             </div>
         </div>
         <div class="navbar-right">
@@ -55,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="menu">
                 <ul>
-                    <li><a href="/gestao_escolar/views/dashboard_professor.php">Meus Alunos</a></li>
+                    <li><a href="/gestao_escolar/views/dashboard_professor.php">Dashboard</a></li>
                 </ul>
             </div>
             <div class="logout-section">
@@ -66,27 +55,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Conteúdo Principal -->
     <main class="content">
-        <h1>Lançar Notas</h1>
+        <h1>Listar Todos os Alunos</h1>
 
-        <?php if (isset($sucesso)): ?>
-        <p style="color: green;"><?php echo $sucesso; ?></p>
-        <?php endif; ?>
-
-        <?php if (isset($erro)): ?>
-        <p style="color: red;"><?php echo $erro; ?></p>
-        <?php endif; ?>
-
-        <form method="POST" action="">
-            <label for="bimestre">Bimestre:</label>
-            <input type="number" name="bimestre" id="bimestre" min="1" max="4" required>
-            <br>
-
-            <label for="nota">Nota:</label>
-            <input type="number" name="nota" id="nota" step="0.1" min="0" max="10" required>
-            <br>
-
-            <button type="submit">Lançar Nota</button>
-        </form>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Login</th>
+                    <th>Matrícula</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($alunos as $aluno): ?>
+                <tr>
+                    <td><?php echo $aluno['nome']; ?></td>
+                    <td><?php echo $aluno['email']; ?></td>
+                    <td><?php echo $aluno['login']; ?></td>
+                    <td><?php echo $aluno['matricula']; ?></td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </main>
 
     <!-- Script para atualizar a data e hora em tempo real -->
