@@ -18,25 +18,26 @@ function buscarTodosAlunos() {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+
 /**
  * Função para buscar alunos por turma, incluindo suas notas.
  * @param int $turma_id ID da turma.
  * @return array Retorna um array com os dados dos alunos e suas notas.
  */
 function buscarAlunosPorTurma($turma_id) {
-   global $pdo;
+    global $pdo;
 
-   $sql = "SELECT u.usuario_id, u.nome, u.email, u.login, m.matricula, t.turma, n.nota, n.bimestre
-       FROM usuarios u
-       JOIN matricula m ON u.usuario_id = m.usuario_id
-       JOIN turma t ON m.turma_id = t.turma_id
-       LEFT JOIN notas n ON m.matricula_id = n.matricula_id
-       WHERE m.turma_id = :turma_id AND u.tipo_usuario_id = 3
-   ";
-   $stmt = $pdo->prepare($sql);
-   $stmt->bindParam(':turma_id', $turma_id);
-   $stmt->execute();
-   return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $sql = "SELECT u.usuario_id, u.nome, u.email, u.login, m.matricula, t.turma, n.nota, n.bimestre
+        FROM usuarios u
+        JOIN matricula m ON u.usuario_id = m.usuario_id
+        JOIN turma t ON m.turma_id = t.turma_id
+        LEFT JOIN notas n ON m.matricula_id = n.matricula_id
+        WHERE m.turma_id = :turma_id AND u.tipo_usuario_id = 3
+    ";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':turma_id', $turma_id);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 
