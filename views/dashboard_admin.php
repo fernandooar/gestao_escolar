@@ -28,43 +28,45 @@ $usuarios = buscarTodosUsuarios(); // Busca todos os usuários ordenados por tip
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Admin</title>
-    <link rel="stylesheet" href="/gestao_escolar/css/navbar.css">
-    <link rel="stylesheet" href="/gestao_escolar/css/dashadmin.css">
+    <link rel="stylesheet" href="/gestao_escolar/css/dashboard_style.css">
+    <link rel="stylesheet" href="/gestao_escolar/css/navbar_style.css">
+    <link rel="stylesheet" href="/gestao_escolar/css/btn_style.css">
+    <link rel="stylesheet" href="/gestao_escolar/css/tabelas_style.css">
 </head>
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar">
-        <div class="navbar-left">
-            <div class="user-info">
-                <h3><?php echo $_SESSION['usuario']['nome']; ?></h3>
-                <p><?php echo $_SESSION['usuario']['email']; ?></p>
-                <p><?php echo $tipo_usuario ?></p>
+    <header class="header">
+        <nav class="navbar">
+            <div class="navbar-left">
+                <div class="user-info">
+                    <h3><?php echo $_SESSION['usuario']['nome']; ?></h3>
+                    <p><?php echo $_SESSION['usuario']['email']; ?></p>
+                    <p><?php echo $tipo_usuario ?></p>
+                </div>
             </div>
-        </div>
-        <div class="navbar-right">
-            <div class="current-time">
-                <p id="current-time"></p>
+            <div class="navbar-right">
+                <div class="current-time">
+                    <p id="current-time"></p>
+                </div>
+                <div class="menu">
+                    <ul>
+                        <li><a href="/gestao_escolar/views/cadastrar_usuario.php">Cadastrar</a></li>
+                        <li><a href="/gestao_escolar/views/dashboard_admin.php">Listar</a></li>
+                    </ul>
+                </div>
+                <div class="backup-section">
+                    <a href="/gestao_escolar/actions/backup.php" class="btn-backup">Backup BD</a>
+                </div>
+                <div class="logout-section">
+                    <a href="/gestao_escolar/actions/logout.php" class="btn-logout">Sair</a>
+                </div>
             </div>
-            <div class="menu">
-                <ul>
-                    <li><a href="/gestao_escolar/views/cadastrar_usuario.php">Cadastrar</a></li>
-                    <li><a href="/gestao_escolar/views/dashboard_admin.php">Listar</a></li>
-                </ul>
-            </div>
-            <div class="backup-section">
-                <a href="/gestao_escolar/actions/backup.php" class="btn-backup">Backup BD</a>
-            </div>
-            <div class="logout-section">
-                <a href="/gestao_escolar/actions/logout.php" class="btn-logout">Sair</a>
-            </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <!-- Conteúdo Principal -->
     <main class="content">
-        <h1>Bem-vindo, <?php echo $_SESSION['usuario']['nome']; ?> (Admin)</h1>
-        <p>Este é o painel do administrador.</p>
 
         <h2>Lista de Usuários</h2>
         <table border="1">

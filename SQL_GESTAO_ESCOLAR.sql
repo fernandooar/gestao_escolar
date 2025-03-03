@@ -140,3 +140,10 @@ git branch -M main
 git remote add origin (junto com o link do repositório) 
 git push -u origin main 
 */
+
+
+or push an existing repository from the command line
+
+git remote add origin https://github.com/fernandooar/crud_php_procedrual.git
+git branch -M main
+git push -u origin main

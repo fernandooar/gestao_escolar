@@ -1,0 +1,82 @@
+/* Conteúdo Principal */
+.content {
+    margin-left: 250px; /* Margem igual à largura do aside */
+    padding: 20px; /* Espaçamento interno */
+    width: calc(100% - 250px); /* Largura total menos a largura do aside */
+    box-sizing: border-box; /* Garante que o padding não aumente a largura */
+    position: relative; /* Garante que o conteúdo fique à direita do aside */
+    z-index: 1; /* Garante que o conteúdo fique abaixo do aside */
+}
+
+/* Estilos para a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Remove espaços entre as células */
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd; /* Bordas das células */
+}
+
+th, td {
+    padding: 10px; /* Espaçamento interno das células */
+    text-align: left; /* Alinhamento do texto */
+}
+
+th {
+    background-color: #f4f4f4; /* Cor de fundo do cabeçalho */
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Cor de fundo para linhas pares */
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Cor de fundo ao passar o mouse */
+}
+
+/* Estilos para os botões de ação */
+.btn-editar, .btn-excluir, .btn-ativar, .btn-desativar {
+    padding: 5px 10px; /* Espaçamento interno */
+    margin: 2px; /* Margem entre os botões */
+    color: white; /* Cor do texto */
+    text-decoration: none; /* Remove sublinhado */
+    border-radius: 3px; /* Bordas arredondadas */
+    font-size: 14px; /* Tamanho da fonte */
+    display: inline-block; /* Transforma em bloco */
+}
+
+.btn-editar {
+    background-color: #28a745; /* Verde */
+}
+
+.btn-excluir {
+    background-color: #dc3545; /* Vermelho */
+}
+
+.btn-ativar {
+    background-color: #17a2b8; /* Azul claro */
+}
+
+.btn-desativar {
+    background-color: #ffc107; /* Amarelo */
+}
+
+.btn-editar:hover, .btn-excluir:hover, .btn-ativar:hover, .btn-desativar:hover {
+    opacity: 0.8; /* Efeito de transparência ao passar o mouse */
+}
+
+.btn-pagination {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn-pagination:hover {
+    background-color: #0056b3;
+}

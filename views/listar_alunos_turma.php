@@ -21,10 +21,10 @@ $tipo_usuario = $tipos_usuario[$usuario['tipo_usuario_id']] ?? 'Desconhecido';
 
 // Busca todas as turmas
 $turmas = buscarTurmas();
-var_dump($turmas);
+// var_dump($turmas);
 
- $turmas = buscarTurmasDoProfessor($_SESSION['usuario']['usuario_id']);
-var_dump($turmas);
+//  $turmas = buscarTurmasDoProfessor($_SESSION['usuario']['usuario_id']);
+
 // Obtém o ID da turma selecionada (se existir)
 $turma_id = $_GET['turma_id'] ?? null;
 
@@ -32,6 +32,7 @@ $turma_id = $_GET['turma_id'] ?? null;
 $alunos = [];
 if ($turma_id) {
     $alunos = buscarAlunosPorTurma($turma_id);
+    //var_dump($alunos);
 }
 ?>
 

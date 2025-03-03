@@ -26,30 +26,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="/gestao_escolar/css/tela_de_login.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão Escolar</title>
+    <link rel="stylesheet" href="/gestao_escolar/css/login_style.css">
+
 </head>
 
 <body>
-    <div class="container-main">
-        <div class="propaganda-container">
-            <div class="card">
-                <div class="card-title">
-                    <h3>Nova Escola.</h3>
-                    <div class="img-login">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et quas ad earum commodi error enim
-                            aut incidunt voluptatem molestiae soluta debitis voluptates, architecto sed neque harum! Ea,
-                            cupiditate reiciendis. Expedita cumque omnis explicabo fugit? Mollitia illo officia expedita
-                            dignissimos quisquam consectetur. Velit explicabo quam atque, voluptatem quis suscipit.
-                            Consequatur eum ducimus ad blanditiis nemo sunt molestiae voluptas voluptatibus architecto
-                            illum dicta repudiandae dolor perspiciatis minus, ab maiores nobis alias dolorem facilis
-                            culpa quo numquam cumque adipisci. Incidunt ratione vitae vel enim? Hic iusto laudantium
-                            velit, voluptate quis ratione rerum vel similique commodi quam architecto assumenda.
-                            Dolorem, voluptas! Maiores, ab libero.</p>
-                    </div>
-                </div>
-            </div>
+    <div class="landing-page">
+        <!-- Conteúdo da Landing Page -->
+        <div class="landing-content">
+            <h1>Gestão Escolar</h1>
+            <p>
+                Bem-vindo ao sistema de Gestão Escolar! Aqui você pode gerenciar usuários, turmas, cursos e muito mais.
+                Faça login para acessar todas as funcionalidades.
+            </p>
         </div>
+
+        <!-- Container de Login -->
         <div class="login-container">
             <div class="card-login">
                 <div class="card-title">
@@ -67,14 +61,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </form>
                 </div>
                 <div class="card-footer">
-
+                    <p>Não tem uma conta? <a href="#">Cadastre-se</a></p>
+                </div>
+                <div class="card-footer">
+                    <p> <a href="#">Esqueceu a senha?</a></p>
+                </div>
+                <div class="card-footer">
+                    <p> <a href="../index.php">Inicio</a></p>
                 </div>
             </div>
 
             <?php if (isset($erro)): ?>
-            <p style="color: red;"><?php echo $erro; ?></p>
+            <p class="error-message"><?php echo $erro; ?></p>
             <?php endif; ?>
-
         </div>
     </div>
 </body>

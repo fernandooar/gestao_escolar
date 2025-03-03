@@ -1,0 +1,37 @@
+.btn-editar, .btn-excluir, .btn-ativar, .btn-desativar {
+    padding: 5px 10px;
+    margin: 2px;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.btn-editar {
+    background-color: #28a745; /* Verde */
+}
+
+.btn-excluir {
+    background-color: #dc3545; /* Vermelho */
+}
+
+.btn-ativar {
+    background-color: #17a2b8; /* Azul claro */
+}
+
+.btn-desativar {
+    background-color: #ffc107; /* Amarelo */
+}
+
+.btn-editar:hover, .btn-excluir:hover, .btn-ativar:hover, .btn-desativar:hover {
+    opacity: 0.8;
+    text-decoration: none;
+
+}
+
+.btn-editar:hover a, .btn-excluir:hover a, .btn-ativar:hover a, .btn-desativar:hover a {
+    opacity: 0.8;
+    font-size: 1rem;
+    text-decoration: none;
+    
+}

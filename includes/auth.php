@@ -1,6 +1,8 @@
 <?php
 require_once __DIR__ . '/../config/db.php'; // Inclui a conexão com o banco de dados
 
+
+
 /**
  * Função para verificar as credenciais do usuário.
  * @param string $login Login do usuário.

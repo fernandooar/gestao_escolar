@@ -15,7 +15,7 @@ $tipo_usuario = $tipos_usuario[$usuario['tipo_usuario_id']] ?? 'Desconhecido';
 
 // Busca todos os alunos
 $alunos = buscarTodosAlunos();
-var_dump($alunos)
+//var_dump($alunos)
 ?>
 
 <!DOCTYPE html>

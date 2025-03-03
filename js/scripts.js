@@ -8,3 +8,14 @@ document.querySelector('form').addEventListener('submit', function (e) {
         e.preventDefault(); // Impede o envio do formulário
     }
 });
+
+// script.js
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdowns = document.querySelectorAll('.dropdown');
+
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('click', function() {
+            this.classList.toggle('active');
+        });
+    });
+});
