@@ -1,0 +1,208 @@
+/* Estilos Globais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+/* Navbar */
+.navbar {
+    /* border: 1px solid black; */
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    gap: 10px;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    padding: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    /* border: 1px solid black; */
+}
+
+.user-info {
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 15px;
+    font-size:  0.9rem;
+    font-weight: normal;
+    width: 50%;
+}
+
+.navbar .menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 20px;
+    align-items: center;
+    margin-right: 50px;
+    /* border: 1px solid black; */
+}
+
+.navbar .menu li {
+    position: relative;
+    margin: 0 10px;
+}
+
+.navbar .menu li a {
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.navbar .menu li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+}
+
+/* Dropdown */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.dropdown-content li a {
+    padding: 10px 20px;
+    display: block;
+    white-space: nowrap;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Ícone do Menu Hamburguer (Responsivo) */
+.menu-icon {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+
+
+/* Seção de Backup */
+.backup-section {
+    margin-right: 20px;
+}
+
+.btn-backup {
+    background-color: #6a11cb; /* Roxo principal */
+    color: white; /* Cor do texto */
+    padding: 8px 16px; /* Espaçamento interno */
+    text-decoration: none; /* Remove sublinhado */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+}
+
+.btn-backup:hover {
+    background-color: #4d0d9b; /* Roxo mais escuro ao passar o mouse */
+}
+
+/* Seção de Logout */
+.user-info  a {
+    background-color: #e74c3c; /* Vermelho para destaque */
+    color: white; /* Cor do texto */
+    padding: 8px 16px; /* Espaçamento interno */
+    text-decoration: none; /* Remove sublinhado */
+    border-radius: 5px; /* Bordas arredondadas */
+    font-size: 0.9em;
+    transition: background-color 0.3s;
+}
+
+.user-info  a:hover {
+    background-color: #c0392b; /* Vermelho mais escuro ao passar o mouse */
+    text-decoration: none;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+    .navbar .menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        padding: 10px 0;
+    }
+
+    .navbar .menu.active {
+        display: flex;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .dropdown-content {
+        position: static;
+        display: none;
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: none;
+    }
+
+    .dropdown.active .dropdown-content {
+        display: block;
+    }
+}
+
+/* Conteúdo da Página */
+.content {
+    padding: 80px 20px 20px; /* Ajuste para a navbar fixa */
+    text-align: center;
+}
+
+.content h1 {
+    font-size: 2.5rem;
+    color: #6a11cb;
+}
+
+.content p {
+    font-size: 1.2rem;
+    color: #555;
+}

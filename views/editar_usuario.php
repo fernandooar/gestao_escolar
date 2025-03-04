@@ -69,40 +69,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Editar Usuário</title>
     <link rel="stylesheet" href="/gestao_escolar/css/navbar.css">
-    <link rel="stylesheet" href="/gestao_escolar/css/dashadmin.css">
+    <link rel="stylesheet" href="/gestao_escolar/css/form_cadastro_style.css">
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="navbar-left">
+    <header>
+        <nav class="navbar">
+            <div class="logo">Gestão Escolar</div>
             <div class="user-info">
-                <h3><?php echo $_SESSION['usuario']['nome']; ?></h3>
-                <p><?php echo $_SESSION['usuario']['email']; ?></p>
-                <p><?php $tipo_usuario ?></p>
-            </div>
-        </div>
-        <div class="navbar-right">
-            <div class="current-time">
-                <p id="current-time"></p>
-            </div>
-            <div class="menu">
-                <ul>
-                    <li><a href="/gestao_escolar/views/cadastrar_usuario.php">Cadastrar Novo Usuário</a></li>
-                    <li><a href="/gestao_escolar/views/dashboard_admin.php">Listar Usuários</a></li>
-                </ul>
-            </div>
-            <div class="backup-section">
-                <a href="/gestao_escolar/actions/backup.php" class="btn-backup">Backup do Banco de Dados</a>
-            </div>
-            <div class="logout-section">
+                <p><?=$_SESSION['usuario']['nome'] . " /  " ;?></p>
+                <!-- <p><?=$_SESSION['usuario']['email']; ?></p> -->
+                <p><?=$tipo_usuario ?></p>
                 <a href="/gestao_escolar/actions/logout.php" class="btn-logout">Sair</a>
+                <div class="current-time">
+                    <p id="current-time"></p>
+                </div>
             </div>
-        </div>
-    </nav>
+            <div class="menu-icon" id="menuIcon">☰</div>
+            <ul class="menu" id="menu">
+                <li><a href="dashboard_admin.php">Home</a></li>
+                <li class="dropdown">
+                    <a href="#cadastro">Cadastro</a>
+                    <ul class="dropdown-content">
+                        <li><a href="cadastrar_usuario.php">Usuário</a></li>
+                        <li><a href="#turma">Turma</a></li>
+                        <li><a href="#curso">Curso</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#editar">Editar</a>
+                    <ul class="dropdown-content">
+                        <li><a href="editar_usuario.php">Usuário</a></li>
+                        <li><a href="#turma">Turma</a></li>
+                        <li><a href="#curso">Curso</a></li>
+                    </ul>
+                </li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Conteúdo Principal -->
-    <main class="content">
+    <main class="cadastro-container">
         <h1>Editar Usuário</h1>
 
         <?php if (isset($sucesso)): ?>
@@ -113,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <p style="color: red;"><?php echo $erro; ?></p>
         <?php endif; ?>
 
-        <form method="POST" action="">
+        <form method="POST" action="" class="cadastro-form">
             <label for="nome">Nome:</label>
             <input type="text" name="nome" id="nome" value="<?php echo $usuario['nome']; ?>" required>
             <br>

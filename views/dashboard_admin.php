@@ -28,40 +28,47 @@ $usuarios = buscarTodosUsuarios(); // Busca todos os usuários ordenados por tip
 <head>
     <meta charset="UTF-8">
     <title>Dashboard Admin</title>
-    <link rel="stylesheet" href="/gestao_escolar/css/dashboard_style.css">
-    <link rel="stylesheet" href="/gestao_escolar/css/navbar_style.css">
+    <link rel="stylesheet" href="/gestao_escolar/css/navbar.css">
     <link rel="stylesheet" href="/gestao_escolar/css/btn_style.css">
     <link rel="stylesheet" href="/gestao_escolar/css/tabelas_style.css">
+    <script src="/gestao_escolar/js/scripts.js" defer=""></script>
 </head>
 
 <body>
     <!-- Navbar -->
-    <header class="header">
+    <header>
         <nav class="navbar">
-            <div class="navbar-left">
-                <div class="user-info">
-                    <h3><?php echo $_SESSION['usuario']['nome']; ?></h3>
-                    <p><?php echo $_SESSION['usuario']['email']; ?></p>
-                    <p><?php echo $tipo_usuario ?></p>
-                </div>
-            </div>
-            <div class="navbar-right">
+            <div class="logo">Gestão Escolar</div>
+            <div class="user-info">
+                <p><?=$_SESSION['usuario']['nome'] . " /  " ;?></p>
+                <!-- <p><?=$_SESSION['usuario']['email']; ?></p> -->
+                <p><?=$tipo_usuario ?></p>
+                <a href="/gestao_escolar/actions/logout.php" class="btn-logout">Sair</a>
                 <div class="current-time">
                     <p id="current-time"></p>
                 </div>
-                <div class="menu">
-                    <ul>
-                        <li><a href="/gestao_escolar/views/cadastrar_usuario.php">Cadastrar</a></li>
-                        <li><a href="/gestao_escolar/views/dashboard_admin.php">Listar</a></li>
-                    </ul>
-                </div>
-                <div class="backup-section">
-                    <a href="/gestao_escolar/actions/backup.php" class="btn-backup">Backup BD</a>
-                </div>
-                <div class="logout-section">
-                    <a href="/gestao_escolar/actions/logout.php" class="btn-logout">Sair</a>
-                </div>
             </div>
+            <div class="menu-icon" id="menuIcon">☰</div>
+            <ul class="menu" id="menu">
+                <li><a href="dashboard_admin.php">Home</a></li>
+                <li class="dropdown">
+                    <a href="#cadastro">Cadastro</a>
+                    <ul class="dropdown-content">
+                        <li><a href="cadastrar_usuario.php">Usuário</a></li>
+                        <li><a href="#turma">Turma</a></li>
+                        <li><a href="#curso">Curso</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#editar">Editar</a>
+                    <ul class="dropdown-content">
+                        <li><a href="editar_usuario.php">Usuário</a></li>
+                        <li><a href="#turma">Turma</a></li>
+                        <li><a href="#curso">Curso</a></li>
+                    </ul>
+                </li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
         </nav>
     </header>
 

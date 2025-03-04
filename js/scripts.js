@@ -19,3 +19,39 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Seleciona o ícone do menu e o menu
+const menuIcon = document.getElementById('menuIcon');
+const menu = document.getElementById('menu');
+
+// Adiciona um evento de clique ao ícone do menu
+menuIcon.addEventListener('click', () => {
+    menu.classList.toggle('active'); // Alterna a classe 'active' no menu
+});
+
+// Adiciona interação aos dropdowns no mobile
+const dropdowns = document.querySelectorAll('.dropdown');
+
+dropdowns.forEach(dropdown => {
+    dropdown.addEventListener('click', () => {
+        dropdown.classList.toggle('active'); // Alterna a classe 'active' no dropdown
+    });
+});
+
+
+function updateTime() {
+    const now = new Date();
+    const timeString = now.toLocaleString('pt-BR', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    });
+    document.getElementById('current-time').textContent = timeString;
+}
+
+setInterval(updateTime, 1000); // Atualiza a cada 1 segundo
+updateTime(); // Executa imediatamente ao carregar a página

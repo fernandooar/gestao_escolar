@@ -8,11 +8,12 @@ body {
 
 .sidebar {
     width: 250px;
-    background-color: #2c3e50;
-    color: #ecf0f1;
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradiente roxo e azul */
+    color: #ecf0f1; /* Cor do texto */
     height: 100vh;
     padding: 20px;
     box-sizing: border-box;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2); /* Sombra lateral */
 }
 
 .user-card {
@@ -20,12 +21,16 @@ body {
     align-items: center;
     margin-bottom: 20px;
 }
-
+.fa-user {
+    font-size: 30px;
+    color: #fff; /* Cor do ícone */
+}
 .user-avatar {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     margin-right: 10px;
+    
 }
 
 .user-info {
@@ -35,11 +40,12 @@ body {
 
 .user-name {
     font-weight: bold;
+    color: #fff; /* Cor do nome do usuário */
 }
 
 .user-email {
-    font-size: 0.9em;
-    color: #bdc3c7;
+    font-size: 0.8em;
+    color: #f4f4f9; /* Cor mais clara para o e-mail */
 }
 
 .nav-menu {
@@ -53,7 +59,7 @@ body {
 }
 
 .nav-menu li a {
-    color: #ecf0f1;
+    color: #ecf0f1; /* Cor do texto */
     text-decoration: none;
     display: block;
     padding: 10px;
@@ -62,7 +68,7 @@ body {
 }
 
 .nav-menu li a:hover {
-    background-color: #34495e;
+    background-color: rgba(255, 255, 255, 0.1); /* Efeito hover suave */
 }
 
 .dropdown-content {
@@ -74,6 +80,12 @@ body {
 .dropdown-content li a {
     padding: 8px;
     font-size: 0.9em;
+    color: #ecf0f1; /* Cor do texto dos submenus */
+    transition: background-color 0.3s;
+}
+
+.dropdown-content li a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Efeito hover suave */
 }
 
 .dropdown.active .dropdown-content {

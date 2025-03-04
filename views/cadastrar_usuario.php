@@ -26,8 +26,8 @@ $tipo_usuario = $tipos_usuario[$usuario['tipo_usuario_id']] ?? 'Desconhecido';
 <head>
     <meta charset="UTF-8">
     <title>Cadastrar Novo Usuário</title>
-    <link rel="stylesheet" href="/gestao_escolar/css/navbar.css">
-    <link rel="stylesheet" href="/gestao_escolar/css/cadastro.css"> <!-- CSS específico para cadastro -->
+    <link rel="stylesheet" href="/gestao_escolar/css/navbar_style.css">
+    <link rel="stylesheet" href="/gestao_escolar/css/form_cadastro_style.css"> <!-- CSS específico para cadastro -->
 </head>
 
 <body>
@@ -38,9 +38,7 @@ $tipo_usuario = $tipos_usuario[$usuario['tipo_usuario_id']] ?? 'Desconhecido';
                 <h3><?php echo $_SESSION['usuario']['nome']; ?></h3>
                 <p><?php echo $_SESSION['usuario']['email']; ?></p>
                 <p><?php echo $tipo_usuario; ?></p>
-                <div class="logout-section">
-                    <a href="/gestao_escolar/actions/logout.php" class="btn-logout">Sair</a>
-                </div>
+
             </div>
         </div>
         <div class="navbar-right">
@@ -49,15 +47,17 @@ $tipo_usuario = $tipos_usuario[$usuario['tipo_usuario_id']] ?? 'Desconhecido';
             </div>
             <div class="menu">
                 <ul>
-                    <li><a href="/gestao_escolar/views/cadastrar_usuario.php">Cadastrar</a></li>
-                    <li><a href="/gestao_escolar/views/editar_usuario.php">Editar</a></li>
-                    <li><a href="/gestao_escolar/views/excluir_usuario.php">Excluir</a></li>
+                    <li><a href="/gestao_escolar/views/dashboard_admin.php">Inicio</a></li>
+                    <!-- <li><a href="/gestao_escolar/views/editar_usuario.php">Editar</a></li>
+                    <li><a href="/gestao_escolar/views/excluir_usuario.php">Excluir</a></li> -->
                 </ul>
             </div>
             <div class="backup-section">
                 <a href="/gestao_escolar/actions/backup.php" class="btn-backup">Backup DB</a>
             </div>
-
+            <div class="logout-section">
+                <a href="/gestao_escolar/actions/logout.php" class="btn-logout">Sair</a>
+            </div>
         </div>
     </nav>
 

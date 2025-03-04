@@ -1,13 +1,45 @@
 
 
+/*
+Explicação das alterações e organização:
 
+    Adição da coluna ativo na tabela usuarios:
+
+        A coluna ativo foi adicionada para controlar o status do usuário, onde 1 significa ativo e 0 significa inativo.
+
+    Criação da tabela professor_turma:
+
+        Essa tabela foi criada para armazenar o relacionamento entre professores e turmas. Ela contém:
+
+            professor_turma_id: Chave primária autoincrementada.
+
+            usuario_id: ID do professor (deve ser um usuário do tipo professor).
+
+            turma_id: ID da turma à qual o professor está vinculado.
+
+        As chaves estrangeiras garantem a integridade referencial com as tabelas usuarios e turma.
+
+    Organização do script:
+
+        O script foi dividido em seções claras para facilitar a leitura e manutenção.
+
+        Comentários foram adicionados para explicar cada parte do código.
+
+    Índices:
+
+        Foram criados índices nas colunas email da tabela usuarios, matricula da tabela matricula e matricula_id da tabela notas para melhorar o desempenho das consultas.
+
+Esse script está pronto para ser executado em um banco de dados MySQL para criar a estrutura completa do sistema de gestão escolar.
+*/
 -- -----------------------------------------------------
 -- Schema gestao_escolar
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `gestao_escolar` DEFAULT CHARACTER SET utf8 ;
-USE `gestao_escolar` ;
+CREATE SCHEMA IF NOT EXISTS `gestao_escolar` DEFAULT CHARACTER SET utf8;
+USE `gestao_escolar`;
 
--- Criação da tabela tipos_usuario
+-- -----------------------------------------------------
+-- Tabela tipos_usuario
+-- -----------------------------------------------------
 CREATE TABLE tipos_usuario (
     tipo_usuario_id INT PRIMARY KEY AUTO_INCREMENT,
     tipo VARCHAR(45) NOT NULL UNIQUE
@@ -16,7 +48,9 @@ CREATE TABLE tipos_usuario (
 -- Inserção dos tipos de usuário padrão
 INSERT INTO tipos_usuario (tipo) VALUES ('administrador'), ('professor'), ('aluno');
 
--- Criação da tabela usuarios
+-- -----------------------------------------------------
+-- Tabela usuarios
+-- -----------------------------------------------------
 CREATE TABLE usuarios (
     usuario_id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(90) NOT NULL,
@@ -26,18 +60,22 @@ CREATE TABLE usuarios (
     tipo_usuario_id INT NOT NULL,
     data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
     data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    ativo TINYINT(1) DEFAULT 1, -- Adicionada coluna ativo
     FOREIGN KEY (tipo_usuario_id) REFERENCES tipos_usuario(tipo_usuario_id)
 );
 
-
--- Criação da tabela turma
+-- -----------------------------------------------------
+-- Tabela turma
+-- -----------------------------------------------------
 CREATE TABLE turma (
     turma_id INT PRIMARY KEY AUTO_INCREMENT,
     turma VARCHAR(45) NOT NULL,
     data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- Criação da tabela matricula
+-- -----------------------------------------------------
+-- Tabela matricula
+-- -----------------------------------------------------
 CREATE TABLE matricula (
     matricula_id INT PRIMARY KEY AUTO_INCREMENT,
     turma_id INT,
@@ -48,7 +86,9 @@ CREATE TABLE matricula (
     FOREIGN KEY (usuario_id) REFERENCES usuarios(usuario_id)
 );
 
--- Criação da tabela notas
+-- -----------------------------------------------------
+-- Tabela notas
+-- -----------------------------------------------------
 CREATE TABLE notas (
     notas_id INT PRIMARY KEY AUTO_INCREMENT,
     bimestre INT NOT NULL,
@@ -60,21 +100,9 @@ CREATE TABLE notas (
     FOREIGN KEY (matricula_id) REFERENCES matricula(matricula_id)
 );
 
--- Criação de índices adicionais para melhorar o desempenho das consultas
-CREATE INDEX idx_usuarios_email ON usuarios(email);
-CREATE INDEX idx_matricula_matricula ON matricula(matricula);
-CREATE INDEX idx_notas_matricula_id ON notas(matricula_id);
-
- -- Adicione uma coluna ativo na tabela usuarios para controlar o status do usuário.
- -- *ativo = 1: Usuário ativo.
- -- *ativo = 0: Usuário inativo.
-
-ALTER TABLE usuarios ADD COLUMN ativo TINYINT(1) DEFAULT 1;
-
-
--- Criar uma tabela para armazenar o relacionamento entre professores e turmas.
--- *usuario_id: ID do professor (deve ser um usuário do tipo professor).
--- *turma_id: ID da turma à qual o professor está vinculado.
+-- -----------------------------------------------------
+-- Tabela professor_turma
+-- -----------------------------------------------------
 CREATE TABLE professor_turma (
     professor_turma_id INT PRIMARY KEY AUTO_INCREMENT,
     usuario_id INT NOT NULL, -- ID do professor
@@ -82,6 +110,13 @@ CREATE TABLE professor_turma (
     FOREIGN KEY (usuario_id) REFERENCES usuarios(usuario_id),
     FOREIGN KEY (turma_id) REFERENCES turma(turma_id)
 );
+
+-- -----------------------------------------------------
+-- Índices para melhorar o desempenho das consultas
+-- -----------------------------------------------------
+CREATE INDEX idx_usuarios_email ON usuarios(email);
+CREATE INDEX idx_matricula_matricula ON matricula(matricula);
+CREATE INDEX idx_notas_matricula_id ON notas(matricula_id);
 
 /*
 Explicação do Script:
