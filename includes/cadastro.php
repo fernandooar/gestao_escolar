@@ -33,4 +33,3 @@ function cadastrarUsuario($nome, $email, $login, $senha, $tipo_usuario_id) {
         return false;
     }
 }
-?>
